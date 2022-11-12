@@ -43,12 +43,12 @@ namespace CppCLRWinformsProjekt {
 		}
 
 		void Clear(System::Windows::Forms::TextBox^ txt1, System::Windows::Forms::TextBox^ txt2, System::Windows::Forms::TextBox^ txt3, System::Windows::Forms::TextBox^ txt4, System::Windows::Forms::TextBox^ txt5, System::Windows::Forms::Label^ lbl1) {
-			txt1->Text = " ";
-			txt2->Text = " ";
-			txt3->Text = " ";
-			txt4->Text = " ";
-			txt5->Text = " ";
-			label7->Text = " ";
+			txt1->Text = "";
+			txt2->Text = "";
+			txt3->Text = "";
+			txt4->Text = "";
+			txt5->Text = "";
+			label7->Text = "";
 			
 			
 		}
@@ -160,8 +160,8 @@ namespace CppCLRWinformsProjekt {
 			}
 			else {
 				
-				managedArray[0] = System::Convert::ToString((-b + sqrt(D))/(2*a));
-				managedArray[1] = System::Convert::ToString((-b - sqrt(D)) / (2 * a));
+				managedArray[0] = System::Convert::ToString(round(((-b + sqrt(D)) / (2 * a)) * 10000) / 10000); // round(((-b + sqrt(D))/(2*a))*10000)/10000
+				managedArray[1] = System::Convert::ToString(round(((-b - sqrt(D)) / (2 * a)) * 10000) / 10000);
 				managedArray[2] = System::Convert::ToString("Дискриминант > 0. ("+ System::Convert::ToString(D) +")" + " Уравнение \nимеет два корня.");
 			}
 			
@@ -452,6 +452,13 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 	}
 	catch (...) {
 
+	}
+
+	if (System::Convert::ToString(textBox1->Text) == "" || System::Convert::ToString(textBox2->Text) == "" || System::Convert::ToString(textBox3->Text) == "") {
+
+		label7->Text = "Все поля должны быть заполнены";
+		textBox4->Text = "";
+		textBox5->Text = "";
 	}
 	
 	
