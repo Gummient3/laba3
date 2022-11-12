@@ -1,0 +1,4 @@
+C:\Users\rikud\source\repos\laba3\Debug\laba3.vcxproj.AssemblyReference.cache
+C:\Users\rikud\source\repos\laba3\Debug\laba3.Form1.resources
+C:\Users\rikud\source\repos\laba3\Debug\laba3.vcxproj.GenerateResource.cache
+C:\Users\rikud\source\repos\laba3\Debug\laba3.exe
