@@ -1,5 +1,9 @@
 #include <string>
 #include <cmath>
+#include <cstdarg> 
+#include <stdarg.h>
+#include <iostream>
+#include <cstdarg>
 #pragma once
 
 namespace CppCLRWinformsProjekt {
@@ -20,7 +24,7 @@ namespace CppCLRWinformsProjekt {
 	/// 
 	/// 
 	
-
+	
 	
 
 	public ref class Form1 : public System::Windows::Forms::Form
@@ -48,7 +52,21 @@ namespace CppCLRWinformsProjekt {
 			
 			
 		}
-		
+
+		/*void Clear1(System::Windows::Forms::TextBox num, ...)
+		{
+			va_list ap;
+			int j;
+			double sum = 0;
+
+			va_start(ap, num); 
+			for (j = 0; j < ; j++) {
+				va_arg(ap, double); 
+
+			}
+			va_end(ap);
+		}
+			*/
 
 
 		void formatfunc(System::Windows::Forms::KeyPressEventArgs^ e, System::Windows::Forms::TextBox^ txt) {
@@ -460,5 +478,7 @@ private: System::Void textBox3_KeyPress(System::Object^ sender, System::Windows:
 private: System::Void textBox2_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
 	formatfunc(e, this->textBox2);
 }
+
+
 };
 }
