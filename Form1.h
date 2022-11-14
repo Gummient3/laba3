@@ -152,7 +152,7 @@ namespace CppCLRWinformsProjekt {
 			array<String^>^ managedArray = gcnew array<String^>(3);
 			
 			double D = (b * b) - (4 * a * c);
-			label8->Text = System::Convert::ToString(D) + " " +  System::Convert::ToString(a) + " " + System::Convert::ToString(b) +" " + System::Convert::ToString(c);
+			//label8->Text = System::Convert::ToString(D) + " " +  System::Convert::ToString(a) + " " + System::Convert::ToString(b) +" " + System::Convert::ToString(c);
 			if (D < 0) {
 				managedArray[0] = "-";
 				managedArray[1] = "-";
@@ -162,7 +162,7 @@ namespace CppCLRWinformsProjekt {
 				
 				managedArray[0] = System::Convert::ToString(round(((-b + sqrt(D)) / (2 * a)) * 10000) / 10000); // round(((-b + sqrt(D))/(2*a))*10000)/10000
 				managedArray[1] = System::Convert::ToString(round(((-b - sqrt(D)) / (2 * a)) * 10000) / 10000);
-				managedArray[2] = System::Convert::ToString("Дискриминант > 0. ("+ System::Convert::ToString(D) +")" + " Уравнение \nимеет два корня.");
+				managedArray[2] = System::Convert::ToString("Дискриминант > 0 ("+ System::Convert::ToString(D) +")." + " Уравнение \nимеет два действительных корня.");
 			}
 			
 			return managedArray;
@@ -205,7 +205,7 @@ namespace CppCLRWinformsProjekt {
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::Label^ label6;
 	private: System::Windows::Forms::Label^ label7;
-	private: System::Windows::Forms::Label^ label8;
+
 	protected:
 
 	private:
@@ -236,7 +236,6 @@ namespace CppCLRWinformsProjekt {
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->label7 = (gcnew System::Windows::Forms::Label());
-			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// textBox1
@@ -377,21 +376,11 @@ namespace CppCLRWinformsProjekt {
 			this->label7->Size = System::Drawing::Size(0, 13);
 			this->label7->TabIndex = 14;
 			// 
-			// label8
-			// 
-			this->label8->AutoSize = true;
-			this->label8->Location = System::Drawing::Point(191, 248);
-			this->label8->Name = L"label8";
-			this->label8->Size = System::Drawing::Size(24, 13);
-			this->label8->TabIndex = 15;
-			this->label8->Text = L"test";
-			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(428, 322);
-			this->Controls->Add(this->label8);
+			this->ClientSize = System::Drawing::Size(428, 222);
 			this->Controls->Add(this->label7);
 			this->Controls->Add(this->label6);
 			this->Controls->Add(this->label5);
@@ -408,6 +397,7 @@ namespace CppCLRWinformsProjekt {
 			this->Controls->Add(this->textBox2);
 			this->Controls->Add(this->textBox1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
+			this->MaximizeBox = false;
 			this->Name = L"Form1";
 			this->Text = L"Form1";
 			this->Load += gcnew System::EventHandler(this, &Form1::Form1_Load);
