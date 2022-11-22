@@ -30,16 +30,59 @@ namespace CppCLRWinformsProjekt {
 	public ref class Form1 : public System::Windows::Forms::Form
 	{
 	public:
-		void zeroFormat(System::Windows::Forms::TextBox^ txt) {
+		void zeroFormat(System::Windows::Forms::TextBox^ txt, System::Object^ sender) {
+			
+
 			if (txt->Text->Contains("00") && txt->TextLength == 2) {
 				txt->Text = "0";
 				txt->SelectionStart = txt->Text->Length;
 			}
+			
+			
+		}
 
-			int mas[10];
-			for (int i : mas) {
+		void notleadingzero(System::Windows::Forms::TextBox^ txt, System::Object^ sender) {
+			if (txt->Text == "01") {
+				txt->Text = System::Convert::ToChar(49).ToString();
 
 			}
+			else if (txt->Text == "02") {
+				txt->Text = System::Convert::ToChar(50).ToString();
+
+			}
+			else if (txt->Text == "03") {
+				txt->Text = System::Convert::ToChar(51).ToString();
+
+			}
+			else if (txt->Text == "04") {
+				txt->Text = System::Convert::ToChar(52).ToString();
+
+			}
+			else if (txt->Text == "05") {
+				txt->Text = System::Convert::ToChar(53).ToString();
+
+			}
+			else if (txt->Text == "06") {
+				txt->Text = System::Convert::ToChar(54).ToString();
+
+			}
+			else if (txt->Text == "07") {
+				txt->Text = System::Convert::ToChar(55).ToString();
+
+			}
+			else if (txt->Text == "08") {
+				txt->Text = System::Convert::ToChar(56).ToString();
+
+			}
+			else if (txt->Text == "09") {
+				txt->Text = System::Convert::ToChar(57).ToString();
+
+			}
+			else {
+				zeroFormat(txt, sender);
+			}
+
+
 		}
 
 		void Clear(System::Windows::Forms::TextBox^ txt1, System::Windows::Forms::TextBox^ txt2, System::Windows::Forms::TextBox^ txt3, System::Windows::Forms::TextBox^ txt4, System::Windows::Forms::TextBox^ txt5, System::Windows::Forms::Label^ lbl1) {
@@ -151,25 +194,61 @@ namespace CppCLRWinformsProjekt {
 		array<String^>^ calc(double a, double b, double c) {
 			array<String^>^ managedArray = gcnew array<String^>(3);
 			
-			double D = (b * b) - (4 * a * c);
+			
 			//label8->Text = System::Convert::ToString(D) + " " +  System::Convert::ToString(a) + " " + System::Convert::ToString(b) +" " + System::Convert::ToString(c);
-			if (D < 0) {
+			
+			if (a) {
+				double D = (b * b) - (4 * a * c);
+				if (D < 0) {
+					managedArray[0] = "-";
+					managedArray[1] = "-";
+					managedArray[2] = "В данном уравнении нет\nдействительный корней.";
+				}
+				else if (D > 0) {
+
+					managedArray[0] = System::Convert::ToString(round(((-b + sqrt(D)) / (2 * a)) * 10000) / 10000); // round(((-b + sqrt(D))/(2*a))*10000)/10000
+					managedArray[1] = System::Convert::ToString(round(((-b - sqrt(D)) / (2 * a)) * 10000) / 10000);
+					managedArray[2] = System::Convert::ToString("Дискриминант > 0 (" + System::Convert::ToString(D) + ")." + " Уравнение \nимеет два действительных корня.");
+				}
+				else {
+					managedArray[0] = System::Convert::ToString(round(((-b + sqrt(D)) / (2 * a)) * 10000) / 10000); // round(((-b + sqrt(D))/(2*a))*10000)/10000
+					managedArray[1] = System::Convert::ToString(round(((-b - sqrt(D)) / (2 * a)) * 10000) / 10000);
+					managedArray[2] = System::Convert::ToString("Дискриминант == 0." + " Уравнение \nимеет два действительных корня.");
+
+				}
+
+				return managedArray;
+
+			}
+			else if(a == 0 && b != 0){
+
+				managedArray[0] = System::Convert::ToString(round(((-c / b) * 10000)) / 10000);
+				managedArray[1] = "-";
+				managedArray[2] = "Линейное уравнение";
+				textBox5->Visible = false;
+				label5->Visible = false;
+
+				return managedArray;
+				
+
+			}
+			else if (a + b + c == 0) {
+				textBox5->Visible = false;
+				label5->Visible = false;
+				textBox4->Visible = false;
+				label4->Visible = false;
+
+
 				managedArray[0] = "-";
 				managedArray[1] = "-";
-				managedArray[2] = "В данном уравнении нет\nдействительный корней.";
+				managedArray[2] = "0 = 0";
+
+				return managedArray;
 			}
-			else {
-				
-				managedArray[0] = System::Convert::ToString(round(((-b + sqrt(D)) / (2 * a)) * 10000) / 10000); // round(((-b + sqrt(D))/(2*a))*10000)/10000
-				managedArray[1] = System::Convert::ToString(round(((-b - sqrt(D)) / (2 * a)) * 10000) / 10000);
-				managedArray[2] = System::Convert::ToString("Дискриминант > 0 ("+ System::Convert::ToString(D) +")." + " Уравнение \nимеет два действительных корня.");
-			}
-			
-			return managedArray;
 			
 			
 				
-		}
+		} // end func
 
 		Form1(void)
 		{
@@ -409,7 +488,19 @@ namespace CppCLRWinformsProjekt {
 	private: System::Void Form1_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-		zeroFormat(this->textBox1);
+		
+
+		textBox5->Visible = true;
+		label5->Visible = true;
+		textBox4->Visible = true;
+		label4->Visible = true;
+
+		label7->Text = "";
+		
+		notleadingzero(this->textBox1, sender);
+
+		
+
 		
 
 
@@ -417,7 +508,13 @@ namespace CppCLRWinformsProjekt {
 	}
 	private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 
-		zeroFormat(this->textBox2);
+		notleadingzero(this->textBox2, sender);
+
+		textBox5->Visible = true;
+		label5->Visible = true;
+		textBox4->Visible = true;
+		label4->Visible = true;
+		label7->Text = "";
 	}
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) { //кнопка сброс
 		Clear(this->textBox1, this->textBox2, this->textBox3, this->textBox4, this->textBox5, this->label7 );
@@ -461,12 +558,21 @@ private: System::Void textBox4_TextChanged(System::Object^ sender, System::Event
 	
 }
 private: System::Void textBox1_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
+	
+	
+
 	formatfunc(e, this->textBox1);
 	
 }
 private: System::Void textBox3_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 
-	zeroFormat(this->textBox3);
+	notleadingzero(this->textBox3, sender);
+
+	textBox5->Visible = true;
+	label5->Visible = true;
+	textBox4->Visible = true;
+	label4->Visible = true;
+	label7->Text = "";
 }
 private: System::Void textBox3_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
 

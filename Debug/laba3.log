@@ -1,3 +1,4 @@
 ﻿  CppCLR_WinformsProjekt.cpp
+C:\Users\rikud\source\repos\laba3\Form1.h(251): warning C4715: CppCLRWinformsProjekt::Form1::calc: значение возвращается не при всех путях выполнения
   AssemblyInfo.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
   laba3.vcxproj -> C:\Users\rikud\source\repos\laba3\Debug\laba3.exe
